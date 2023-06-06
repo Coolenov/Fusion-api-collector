@@ -1,23 +1,23 @@
-package apiDataCollector
+package internal
 
 import (
-	"FusionAPI/initialize"
-	"FusionAPI/lib"
-	"FusionAPI/lib/database"
+	"database/sql"
 	"encoding/json"
 	"fmt"
+	"github.com/Coolenov/Fusion-library/database"
+	"github.com/Coolenov/Fusion-library/types"
 	"io/ioutil"
 	"net/http"
 	"strings"
 )
 
-func GetAndSaveScrapersPosts(link string) {
+func GetAndSaveScrapersPosts(link string, db *sql.DB) {
 	posts := getScrapedData(link)
-	saveScraperPosts(posts)
+	saveScraperPosts(posts, db)
 }
 
-func getScrapedData(scraper_link string) []lib.Post {
-	var posts []lib.Post
+func getScrapedData(scraper_link string) []types.Post {
+	var posts []types.Post
 	client := &http.Client{}
 
 	req, err := http.NewRequest("GET", scraper_link, nil)
@@ -44,21 +44,21 @@ func getScrapedData(scraper_link string) []lib.Post {
 	return posts
 }
 
-func saveScraperPosts(posts []lib.Post) {
+func saveScraperPosts(posts []types.Post, db *sql.DB) {
 
 	for _, post := range posts {
 
-		if !database.CheckPostExistByLink(post.Link, initialize.DB) {
-			postId := database.AddPostIntoPostsTable(post, initialize.DB)
+		if !database.CheckPostExistByLink(post.Link, db) {
+			postId := database.AddPostIntoPostsTable(post, db)
 			tags := removeDuplicates(post.Tags)
 			for _, tag := range tags {
 				var tagId int64
-				if !database.CheckTagExist(tag, initialize.DB) {
-					tagId = database.AddTagIntoTagsTable(tag, initialize.DB)
+				if !database.CheckTagExist(tag, db) {
+					tagId = database.AddTagIntoTagsTable(tag, db)
 				} else {
-					tagId = database.GetTagIdByTag(tag, initialize.DB)
+					tagId = database.GetTagIdByTag(tag, db)
 				}
-				database.AddIntoPostTagsTable(postId, tagId, initialize.DB)
+				database.AddIntoPostTagsTable(postId, tagId, db)
 			}
 		}
 	}
