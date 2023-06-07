@@ -36,6 +36,7 @@ func getScrapedData(scraper_link string) []types.Post {
 		return posts
 	}
 	err = json.Unmarshal(body, &posts)
+	fmt.Println(posts[0].Title)
 	if err != nil {
 		fmt.Println("Ошибка декодирования JSON:", err)
 		return posts

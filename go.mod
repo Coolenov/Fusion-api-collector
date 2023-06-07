@@ -1,9 +1,8 @@
-module api-collector
+module github.com/Coolenov/Fusion-api-collector
 
 go 1.20
 
 require (
-	github.com/Coolenov/Fusion-library v0.0.0-20230606193722-f25f8918d661 // indirect
+	github.com/Coolenov/Fusion-library v0.0.0-20230606211020-9e38d1c2e26a // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
-	github.com/joho/godotenv v1.5.1 // indirect
 )

@@ -3,11 +3,10 @@ FROM golang:alpine
 WORKDIR /app
 
 COPY . .
-
-RUN go get github.com/Coolenov/Fusion-library@main
-RUN go get github.com/go-sql-driver/mysql
+#COPY go.mod go.sum app/
+#RUN go mod download
+RUN go get -u github.com/Coolenov/Fusion-library
+RUN go get -u github.com/go-sql-driver/mysql
 RUN go get github.com/joho/godotenv
-RUN go get github.com/go-sql-driver/mysql
-
 
 CMD ["go","run", "main.go"]
