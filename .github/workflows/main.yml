@@ -34,7 +34,7 @@ jobs:
           key      : ${{ secrets.MY_KEY }}
           inventory: |
             [all]
-            test_server ansible_host=${{secrets.SERVER_HOST}} ansible_user=ubuntu ansible_password=${{secrets.ANSIBLE_BECOME_PASSWORD}}
+            test_server ansible_host=${{ secrets.SERVER_HOST }} ansible_user=ubuntu ansible_password=${{secrets.ANSIBLE_BECOME_PASSWORD}}
           options: |
             --verbose
             --inventory .hosts
