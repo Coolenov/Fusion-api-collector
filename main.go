@@ -11,7 +11,7 @@ import (
 
 func main() {
 	//dbUrl := os.Getenv("DB_URL")
-	db := database.DbConnect("root:firstpass@tcp(db:3306)/Fusion_db?utf8mb4&loc=Local")
+	db := database.DbConnect("root:firstpass@tcp(fusiondb:3306)/Fusion_db?utf8mb4&loc=Local")
 
 	runservice(db)
 	defer db.Close()
