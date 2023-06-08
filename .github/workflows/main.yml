@@ -24,7 +24,7 @@ jobs:
         with: 
           context: .
           push   : true
-          tags   : coolenov/fusion-habr-ru-api:latest
+          tags   : coolenov/fusion-api-collector:latest
           
       - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v2.6.1
