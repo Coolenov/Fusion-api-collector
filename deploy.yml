@@ -2,9 +2,9 @@
 - hosts: all
   gather_facts: true
   vars:
-    app_path      : /opt/fusion-habr-ru-api
-    service_name  : fusion-habr-ru-api
-    container_name: habr
+    app_path      : /opt/fusion-api-collector
+    service_name  : fusion-api-collector
+    container_name: api-collector
     
   tasks:
     - name : "create {{ app_path }}/"
@@ -23,7 +23,7 @@
       shell: sudo docker pull coolenov/{{service_name}}:latest
       
     - name : "start service"
-      shell: sudo docker run --rm -d --name habr coolenov/{{service_name}}:latest
+      shell: sudo docker run --rm -d --name {{container_name}} coolenov/{{service_name}}:latest
       
     - name : "connect service to docker-network"
       shell: sudo docker network connect net habr

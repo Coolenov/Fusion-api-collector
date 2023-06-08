@@ -1,4 +1,6 @@
 github.com/Coolenov/Fusion-library v0.0.0-20230606211020-9e38d1c2e26a h1:WTwnURCholQz8xpLRvVVYZJCNQYSN/AdXDukUdhSGb0=
 github.com/Coolenov/Fusion-library v0.0.0-20230606211020-9e38d1c2e26a/go.mod h1:RyVlQf0AXuCCBZATv8w+bJ7ct00oPXW3lKZP/lIZSiA=
+github.com/Coolenov/Fusion-library v0.0.0-20230607104853-2d96c3a115bf h1:fc+j9NDn90TNFwK92F84gOb08Vk5Wm1QhJYfObBeO1c=
+github.com/Coolenov/Fusion-library v0.0.0-20230607104853-2d96c3a115bf/go.mod h1:RyVlQf0AXuCCBZATv8w+bJ7ct00oPXW3lKZP/lIZSiA=
 github.com/go-sql-driver/mysql v1.7.1 h1:lUIinVbN1DY0xBg0eMOzmmtGoHwWBbvnWubQUrtU8EI=
 github.com/go-sql-driver/mysql v1.7.1/go.mod h1:OXbVy3sEdcQ2Doequ6Z5BW6fXNQTmx+9S1MCJN5yJMI=
