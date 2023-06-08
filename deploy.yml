@@ -18,7 +18,7 @@
     - name : "stop service"
       shell: sudo docker stop {{container_name}}
       ignore_errors: yes
-      
+
     - name : "delete old image"
       shell: sudo docker rmi -f coolenov/{{service_name}}
 
