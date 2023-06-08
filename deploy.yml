@@ -26,5 +26,5 @@
       shell: sudo docker run --rm -d --name {{container_name}} coolenov/{{service_name}}:latest
       
     - name : "connect service to docker-network"
-      shell: sudo docker network connect net habr
+      shell: sudo docker network connect net {{container_name}}
       
