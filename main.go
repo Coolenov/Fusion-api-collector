@@ -30,6 +30,7 @@ func runservice(db *sql.DB) {
 		for _, link := range links {
 			internal.GetAndSaveScrapersPosts(link, db)
 			err := database.ChangeLastRequestByLink(link, db)
+			fmt.Println("Requst to ", link, " finished")
 			if err != nil {
 				fmt.Println("Cant change last_request", err)
 			}
