@@ -1,11 +1,11 @@
-FROM golang:1.16-alpine as builder
-WORKDIR /build
-COPY go.mod .
-RUN go mod download
+FROM golang:alpine AS build
+RUN apk --no-cache add gcc g++ make git
+WORKDIR /go/src/app
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o /main main.go
-FROM scratch
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=builder main /bin/main
-ENTRYPOINT ["/bin/main"]
-
+RUN go get ./...
+RUN GOOS=linux go build -ldflags="-s -w" -o ./bin/web-app ./main.go
+FROM alpine:3.9
+RUN apk --no-cache add ca-certificates
+WORKDIR /usr/bin
+COPY --from=build /go/src/app/bin /go/bin
+ENTRYPOINT /go/bin/web-app
