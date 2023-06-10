@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+	fmt.Println("FIRST PRINT")
 	//dbUrl := os.Getenv("DB_URL")
 	db := database.DbConnect("root:firstpass@tcp(fusiondb:3306)/Fusion_db?utf8mb4&loc=Local")
 
