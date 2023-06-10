@@ -47,7 +47,6 @@ func getScrapedData(scraper_link string) []types.Post {
 func saveScraperPosts(posts []types.Post, db *sql.DB) {
 
 	for _, post := range posts {
-
 		if !database.CheckPostExistByLink(post.Link, db) {
 			postId := database.AddPostIntoPostsTable(post, db)
 			tags := removeDuplicates(post.Tags)
