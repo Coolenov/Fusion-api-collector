@@ -8,4 +8,4 @@ FROM alpine:3.9
 RUN apk --no-cache add ca-certificates
 WORKDIR /usr/bin
 COPY --from=build /go/src/app/bin /go/bin
-ENTRYPOINT /go/bin/web-app
+ENTRYPOINT /go/bin/my-app
