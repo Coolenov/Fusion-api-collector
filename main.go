@@ -12,7 +12,7 @@ import (
 func main() {
 	fmt.Println("FIRST PRINT")
 	//dbUrl := os.Getenv("DB_URL")
-	db := database.DbConnect("root:firstpass@tcp(maindb:3306)/Fusion_db?utf8mb4&loc=Local")
+	db := database.DbConnect("root:firstpass@tcp(database:3306)/Fusion_db?utf8mb4&loc=Local")
 
 	runservice(db)
 	defer db.Close()
