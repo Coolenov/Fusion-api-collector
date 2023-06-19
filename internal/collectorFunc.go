@@ -36,7 +36,6 @@ func getScrapedData(scraper_link string) []types.Post {
 		return posts
 	}
 	err = json.Unmarshal(body, &posts)
-	fmt.Println(posts[0].Title)
 	if err != nil {
 		fmt.Println("Ошибка декодирования JSON:", err)
 		return posts
@@ -48,7 +47,6 @@ func getScrapedData(scraper_link string) []types.Post {
 func saveScraperPosts(posts []types.Post, db *sql.DB) {
 
 	for _, post := range posts {
-
 		if !database.CheckPostExistByLink(post.Link, db) {
 			postId := database.AddPostIntoPostsTable(post, db)
 			tags := removeDuplicates(post.Tags)

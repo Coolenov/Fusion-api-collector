@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/Coolenov/Fusion-api-collector/internal"
 	"github.com/Coolenov/Fusion-library/database"
@@ -10,14 +11,14 @@ import (
 
 func main() {
 	//dbUrl := os.Getenv("DB_URL")
+	db := database.DbConnect("root:firstpass@tcp(fusiondb:3306)/Fusion_db?utf8mb4&loc=Local")
 
-	runservice()
-
+	runservice(db)
+	defer db.Close()
 }
 
-func runservice() {
+func runservice(db *sql.DB) {
 	for {
-		db := database.DbConnect("root:firstpass@tcp(db:3306)/Fusion_db?utf8mb4&loc=Local")
 		links, err := database.GetScrapersUrl(db)
 		if err != nil {
 			fmt.Println("Cant get scrapers URL!!!\n Trying more...\n", err)
@@ -32,7 +33,6 @@ func runservice() {
 				fmt.Println("Cant change last_request", err)
 			}
 		}
-		defer db.Close()
 		time.Sleep(10 * time.Second)
 	}
 }
