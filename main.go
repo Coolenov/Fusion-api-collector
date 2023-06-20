@@ -31,7 +31,10 @@ func runservice() {
 				fmt.Println("Cant change last_request", err)
 			}
 		}
-		db.Close()
+		err = db.Close()
+		if err != nil {
+			fmt.Println("Can't close the connection")
+		}
 		time.Sleep(20 * time.Second)
 	}
 }
