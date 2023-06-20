@@ -9,15 +9,12 @@ import (
 )
 
 func main() {
-	//dbUrl := os.Getenv("DB_URL")
-
 	runservice()
-
 }
 
 func runservice() {
 	for {
-		db := database.DbConnect("root:firstpass@tcp(db:3306)/Fusion_db?utf8mb4&loc=Local")
+		db := database.DbConnect("root:firstpass@tcp(fdatabase:3306)/Fusion_db?utf8mb4&loc=Local")
 		links, err := database.GetScrapersUrl(db)
 		if err != nil {
 			fmt.Println("Cant get scrapers URL!!!\n Trying more...\n", err)
@@ -26,13 +23,15 @@ func runservice() {
 		}
 
 		for _, link := range links {
+			fmt.Println("Try request ", link)
 			internal.GetAndSaveScrapersPosts(link, db)
 			err := database.ChangeLastRequestByLink(link, db)
+			fmt.Println("Request finished", link)
 			if err != nil {
 				fmt.Println("Cant change last_request", err)
 			}
 		}
-		defer db.Close()
-		time.Sleep(10 * time.Second)
+		db.Close()
+		time.Sleep(20 * time.Second)
 	}
 }

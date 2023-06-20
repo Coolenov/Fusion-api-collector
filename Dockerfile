@@ -1,5 +1,11 @@
 FROM golang:alpine AS build
 RUN apk --no-cache add gcc g++ make git
+
+ENV DB_IP={{ secrets.SERVER_HOST  }}
+ENV DB_USER={{ secrets.DB_USERNAME }}
+ENV DB_PASS={{ secrets.DB_PASSWORD }}
+ENV DB_NAME={{ secrets.DB_NAME }}
+
 WORKDIR /go/src/app
 COPY . .
 RUN go get ./...
